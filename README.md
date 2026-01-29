@@ -243,3 +243,42 @@ The script can be enhanced to call Claude API with the project-architect agent t
 
 **Created:** 2026-01-25
 **Maintained by:** Claude Code Automation
+
+
+## Credentials
+
+### Canvas API Keys
+1. Sign in to each Canvas instance you want to monitor, go to **Account > Settings > Approved Integrations (Access Tokens)**, and click **+ New Access Token**.
+2. Give it a descriptive name (e.g., "daily-canvas") and copy the token immediately; Canvas only shows it once.
+3. Save the tokens in `~/.claude/credentials/canvas.json` using this structure (add one entry per Canvas instance):
+
+```json
+{
+  "instances": [
+    {
+      "name": "UO Academic Canvas",
+      "url": "https://uoregon.instructure.com",
+      "api_token": "<paste-your-token-here>"
+    },
+    {
+      "name": "UO Community Canvas",
+      "url": "https://community.uoregon.edu",
+      "api_token": "<token>"
+    }
+  ]
+}
+```
+4. Keep the file private (it is already ignored by `.gitignore`) and never commit the tokens.
+
+### OpenAI API Key
+1. Visit https://platform.openai.com/account/api-keys, create a new API key, and copy it securely.
+2. Save it inside `~/.claude/credentials/openai.json` like this:
+
+```json
+{
+  "credentials": {
+    "api_key": "sk-..."
+  }
+}
+```
+3. This key powers the GPT-4o-mini responses for both the planner and study guide generator. Keep it private.
