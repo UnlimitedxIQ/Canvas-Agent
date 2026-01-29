@@ -1,0 +1,373 @@
+# 🎓 Canvas Automation System - Complete Features Guide
+
+## 🚀 What You Now Have:
+
+### 1️⃣ **Daily Canvas Planner** (Automated)
+**File:** `daily-canvas-planner.py`
+
+Runs automatically every morning at 7:00 AM via Windows Task Scheduler.
+
+#### Features:
+- ✅ Checks assignments due in **next 3 days** (not just today)
+- ✅ **Priority symbols** for different assignment types:
+  - 🚨 **Tests, Exams, Midterms, Quizzes** (High priority)
+  - ⚠️ **Due today** (Urgent)
+  - 📌 **Due tomorrow** (Important)
+  - 📋 **Normal assignments**
+- ✅ **Time until due** shown as human-readable countdown:
+  - "Due in 4 hours"
+  - "Due tomorrow at 3:00 PM"
+  - "Due in 2 days (Jan 27 at 11:59 PM)"
+- ✅ **AI-generated action plans** using GPT-4o-mini
+- ✅ **Pro tips** for maximizing grades
+- ✅ Sends notifications to your **Canvas Planner Telegram bot**
+
+#### Example Notification:
+
+```
+📚 Daily Canvas Update
+📅 Saturday, January 25, 2026
+
+⚠️ 3 assignments due in next 3 days!
+🚨 1 TEST/EXAM upcoming!
+
+---
+
+🚨 ACCT 382: Accounting Info Sys and Analytics
+📋 Midterm Exam
+
+⏰ Due in 2 days (Jan 27 at 2:00 PM)
+⭐ Points: 100
+⏱️ Estimated Time: 3-4 hours study time
+
+📝 Summary:
+Covers chapters 1-6, focusing on database design, SQL queries,
+and internal controls...
+
+🎯 Action Plan:
+1. 📚 Review lecture notes from weeks 1-6
+2. 📝 Create summary sheet for each chapter
+3. 💻 Practice SQL queries from textbook
+4. 🧠 Complete practice exam
+5. 🔍 Review incorrect answers
+6. 🗂️ Organize formula sheet
+
+💡 Pro Tips:
+• Focus on SQL syntax - it's 40% of the exam
+• Know the difference between JOIN types
+• Practice database normalization problems
+• Review past homework for similar questions
+
+💬 Type: TEST/EXAM - Reply 'study guide for Midterm Exam' for AI study materials!
+
+🔗 [Open in Canvas](https://canvas.link)
+```
+
+---
+
+### 2️⃣ **Interactive Study Guide Generator** (On-Demand)
+**Files:** `canvas-study-guide-generator.py`, `ask-canvas.ps1`
+
+Creates comprehensive AI-powered study guides as **Word documents** (.docx).
+
+#### How to Use:
+
+**Option 1: PowerShell Command**
+```powershell
+cd $env:USERPROFILE\.claude\automations
+.\ask-canvas.ps1 "midterm exam"
+.\ask-canvas.ps1 "help me study for quiz 3"
+.\ask-canvas.ps1 "create study guide for final"
+```
+
+**Option 2: Direct Python**
+```powershell
+python canvas-study-guide-generator.py "Midterm Exam"
+python canvas-study-guide-generator.py "Chapter 5 Quiz"
+```
+
+**Option 3: Reply to Telegram**
+When you get a notification about a test/exam, just reply in Telegram:
+```
+"study guide for Midterm Exam"
+"help me study for quiz 3"
+```
+*(Manual trigger - you'll need to run the command with that assignment name)*
+
+#### What It Does:
+
+1. 🔍 **Searches Canvas** for the assignment you mentioned
+2. 📚 **Fetches course resources**:
+   - Module names and topics
+   - Lecture slides
+   - Practice tests
+   - Reading assignments
+   - Chapter references
+3. 🤖 **Generates AI study guide** using GPT-4o-mini:
+   - Key topics to master (5-8 main concepts)
+   - Study timeline (recommended schedule)
+   - Focus areas (what to prioritize)
+   - Practice strategies
+   - Quick reference (formulas, definitions)
+   - Common mistakes to avoid
+4. 📄 **Creates Word document** with:
+   - Professional formatting
+   - Course information
+   - Assignment overview
+   - AI study content
+   - List of available resources
+5. 📱 **Sends Telegram notification** with file location
+
+#### Output Example:
+
+**File Location:**
+`C:\Users\bryso\Documents\Canvas Study Guides\Midterm-Exam-study-guide.docx`
+
+**Document Contents:**
+```
+# Study Guide: Midterm Exam
+Course: ACCT 382: Accounting Info Sys and Analytics
+Points: 100
+Generated: January 25, 2026 at 3:45 PM
+
+## Assignment Overview
+Comprehensive midterm covering chapters 1-6, focusing on database
+design principles, SQL query construction, and internal controls...
+
+## AI Study Guide
+
+### Key Topics to Master
+• Database normalization (1NF, 2NF, 3NF, BCNF)
+• SQL query syntax (SELECT, JOIN, WHERE, GROUP BY)
+• Entity-Relationship Diagrams (ERD)
+• Internal controls and COSO framework
+• Data integrity constraints
+• Transaction processing concepts
+
+### Study Timeline (5 days)
+Day 1: Review chapters 1-2, complete practice problems
+Day 2: Focus on SQL - practice 20+ queries
+Day 3: Database design and normalization
+Day 4: Internal controls and theory
+Day 5: Full practice exam, review weak areas
+
+### Focus Areas
+• SQL syntax is 40% of exam weight
+• ERD creation and interpretation
+• Normalization process step-by-step
+• COSO framework components
+
+[... continues with Practice Strategies, Quick Reference, etc.]
+
+## Course Resources
+• Week 1 → Database Fundamentals (File)
+• Week 2 → SQL Basics Lecture (Page)
+• Week 3 → Practice SQL Problems (Assignment)
+• Week 4 → ERD Tutorial Video (External URL)
+[... full list of resources]
+
+---
+Generated by AI-Powered Canvas Study Guide Generator 🤖
+```
+
+---
+
+## 📋 Complete Setup Instructions
+
+### Initial Setup (One-Time)
+
+1. **Install Python dependencies:**
+```powershell
+python -m pip install requests openai python-docx
+```
+
+2. **Set up Task Scheduler for daily notifications:**
+```powershell
+cd $env:USERPROFILE\.claude\automations
+.\setup-task-scheduler.ps1
+```
+
+3. **Test the daily planner:**
+```powershell
+.\test-canvas-planner.ps1
+```
+
+### Daily Usage
+
+**Morning (Automatic):**
+- At 7:00 AM, you'll automatically receive Telegram notifications
+- Shows all assignments due in next 3 days
+- Highlights tests/exams with 🚨
+- Includes AI action plans
+
+**When You Need a Study Guide:**
+```powershell
+cd $env:USERPROFILE\.claude\automations
+.\ask-canvas.ps1 "name of your test"
+```
+
+The study guide will be created at:
+`C:\Users\bryso\Documents\Canvas Study Guides\`
+
+---
+
+## 🎯 Priority Symbol Reference
+
+When you get notifications, here's what the symbols mean:
+
+| Symbol | Meaning | Example |
+|--------|---------|---------|
+| 🚨 | **TEST/EXAM** - High priority, study guide available | Midterm Exam, Final, Quiz |
+| ⚠️ | **Due today** - Urgent action needed | Any assignment due in <12 hours |
+| 📌 | **Due tomorrow** - Start now | Due next day |
+| 📋 | **Normal assignment** - Regular priority | Essay, discussion post, homework |
+
+---
+
+## 🤖 How the AI Works
+
+### Daily Planner AI:
+- Reads your assignment description
+- Analyzes point value and complexity
+- Creates custom action plan specific to YOUR assignment
+- Provides pro tips based on assignment type
+
+### Study Guide AI:
+- Analyzes the test/exam description
+- Reviews available course materials
+- Identifies key topics from syllabus
+- Creates study timeline based on days until test
+- Suggests practice strategies
+- Highlights common student mistakes
+
+Both use **GPT-4o-mini** - fast, cost-effective, and smart!
+
+---
+
+## 🔧 Customization Options
+
+### Change Daily Notification Time:
+Edit `setup-task-scheduler.ps1`, change:
+```powershell
+$Trigger = New-ScheduledTaskTrigger -Daily -At 8:00AM  # Change time
+```
+
+### Change Lookahead Window:
+Edit `daily-canvas-planner.py`, line 90:
+```python
+three_days_from_now = today + timedelta(days=7)  # Change to 7 days
+```
+
+### Add More Priority Keywords:
+Edit `daily-canvas-planner.py`, function `is_test_or_exam()`:
+```python
+test_keywords = ['test', 'exam', 'midterm', 'final', 'quiz', 'assessment', 'review']
+```
+
+---
+
+## 📊 File Structure
+
+```
+C:\Users\bryso\.claude\
+├── credentials\
+│   ├── canvas.json (Both Canvas instances)
+│   ├── openai.json (GPT-4o-mini API)
+│   └── telegram.json (Canvas Planner bot)
+│
+└── automations\
+    ├── daily-canvas-planner.py (Main automation)
+    ├── canvas-study-guide-generator.py (Study guide creator)
+    ├── ask-canvas.ps1 (Easy command interface)
+    ├── setup-task-scheduler.ps1 (One-time setup)
+    ├── test-canvas-planner.ps1 (Test manually)
+    ├── README.md (Basic guide)
+    └── FEATURES.md (This file)
+
+C:\Users\bryso\Documents\
+└── Canvas Study Guides\
+    └── [Generated .docx files appear here]
+```
+
+---
+
+## 💡 Pro Tips
+
+### 1. Set up a Telegram notification sound
+- Assign a unique sound to your Canvas Planner bot
+- Never miss an assignment notification!
+
+### 2. Run study guide generator early
+```powershell
+.\ask-canvas.ps1 "midterm"
+```
+Generate your study guide 5-7 days before the test for best results.
+
+### 3. Multiple tests same day?
+The system will create separate study guides for each:
+```powershell
+.\ask-canvas.ps1 "accounting midterm"
+.\ask-canvas.ps1 "marketing quiz"
+```
+
+### 4. Check what's coming up manually
+```powershell
+.\test-canvas-planner.ps1
+```
+Run this anytime to get current 3-day snapshot.
+
+---
+
+## 🛠️ Troubleshooting
+
+### "No assignments found"
+- Check assignment name spelling
+- Try shorter query: "midterm" instead of "accounting midterm exam"
+- Assignment might not be published yet
+
+### Study guide generation fails
+1. Check OpenAI API key is valid
+2. Ensure you have API credits
+3. Check internet connection
+
+### No Telegram notifications
+1. Verify bot token in `telegram.json`
+2. Make sure you've messaged the bot first
+3. Check chat_id is correct
+
+---
+
+## 🎯 Real-World Usage Examples
+
+### Scenario 1: Sunday Planning
+**7:00 AM - Automatic notification:**
+```
+📚 Daily Canvas Update
+⚠️ 5 assignments due in next 3 days!
+🚨 2 TESTS upcoming!
+```
+
+**You see a midterm on Tuesday:**
+```powershell
+.\ask-canvas.ps1 "midterm exam"
+```
+Study guide generated → Start studying today!
+
+### Scenario 2: Last-Minute Cramming
+**It's Monday night, test is tomorrow:**
+```powershell
+.\ask-canvas.ps1 "chapter 8 quiz"
+```
+AI creates focused study guide with priority topics → Efficient cramming!
+
+### Scenario 3: Essay Planning
+**Daily notification shows essay due Thursday:**
+- Action plan: Research today, outline tomorrow, draft Wednesday
+- Pro tip: Start with thesis statement
+- Time estimate: 4-6 hours total
+
+---
+
+**Created:** January 25, 2026
+**Powered by:** GPT-4o-mini, Canvas API, Telegram Bot API
+**Your AI Academic Assistant** 🤖

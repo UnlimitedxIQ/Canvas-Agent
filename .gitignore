@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.log
+*.cache
+*.coverage
+.python-version
+
+# Virtual environments
+.env
+.venv/
+env/
+venv/
+venv.bak/
+
+# OS generated
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# PowerShell/transients
+*.ps1xml
+*.tmp
+*.bak
+
+# Secrets & credentials
+Secrets/
+.terraform/
+
+# Build artifacts
+*.egg-info/
+*.dist-info/
+
+# Other editors
+*.swp
+*~
